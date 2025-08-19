@@ -47,10 +47,11 @@ A Spring Boot backend application for the FlickIt mobile app, providing event ma
 ## 📚 Documentation
 
 - [Complete Documentation](docs/) - All project documentation
-- [API Reference](docs/api-reference.md) - Comprehensive API documentation
-- [Development Guide](docs/development-guide.md) - Setup and development workflow
-- [Architecture Diagrams](docs/architecture-diagrams.md) - System design and flows
-- [Postman Collection](docs/postman/README.md) - API testing collection
+- [API Reference](api-reference.md) - Comprehensive API documentation
+- [Development Guide](development-guide.md) - Setup and development workflow
+- [Architecture Diagrams](architecture-diagrams.md) - System design and flows
+- [E2E Test Scenarios](e2e-test-scenarios.md) - Comprehensive end-to-end test scenarios
+- [Postman Collection](postman/README.md) - API testing collection
 
 ## 🏗️ Architecture
 
