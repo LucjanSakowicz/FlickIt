@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flickit.auth.model.CurrentUser;
 import com.flickit.auth.service.AuthContext;
 import com.flickit.event.repository.EventRepository;
+import com.flickit.notification.service.NotificationService;
 import com.flickit.rating.dto.CreateRatingRequest;
 import com.flickit.rating.dto.RatingDto;
 import com.flickit.rating.model.RatingEntity;
@@ -25,6 +26,7 @@ public class RatingService {
     private final ObjectMapper objectMapper;
     private final UserRepository userRepository;
     private final EventRepository eventRepository;
+    private final NotificationService notificationService;
 
     @Transactional
     public RatingDto rateEvent(CreateRatingRequest request) {
@@ -47,6 +49,11 @@ public class RatingService {
         RatingEntity saved = ratingRepository.save(entity);
 
         updateVendorRating(request.getEventId(), request.getRating());
+
+        // Send notification to vendor about new rating
+        UUID vendorId = getVendorIdFromEvent(request.getEventId());
+        String eventTitle = getEventTitle(request.getEventId());
+        notificationService.sendRatingNotification(vendorId, eventTitle, request.getRating());
 
         return objectMapper.convertValue(saved, RatingDto.class);
     }
@@ -72,5 +79,13 @@ public class RatingService {
         return eventRepository.findById(eventId)
                 .orElseThrow(() -> new IllegalArgumentException("Event not found"))
                 .getVendorId();
+    }
+
+    private String getEventTitle(UUID eventId) {
+        return eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("Event not found"))
+                .getTitleVendor() != null ? 
+                    eventRepository.findById(eventId).get().getTitleVendor() : 
+                    eventRepository.findById(eventId).get().getTitleAi();
     }
 }

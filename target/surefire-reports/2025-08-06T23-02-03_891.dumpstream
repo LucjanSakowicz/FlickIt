@@ -1,5 +1,0 @@
-# Created at 2025-08-06T23:02:04.059
-Boot Manifest-JAR contains absolute paths in classpath 'E:\FlickIt v0.0\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-

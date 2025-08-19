@@ -19,6 +19,11 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+# JWT Configuration
+jwt:
+  secret: xLaG2/dGZ9B1cHZGU8I+GHZlGhkBPLf88uAYbwMLYJY=
+  expiration-ms: 86400000  # 24 hours in milliseconds
+
 ---
 
 spring:
@@ -36,6 +41,11 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+# JWT Configuration
+jwt:
+  secret: xLaG2/dGZ9B1cHZGU8I+GHZlGhkBPLf88uAYbwMLYJY=
+  expiration-ms: 86400000  # 24 hours in milliseconds
+
 ---
 
 spring:
@@ -52,3 +62,35 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# JWT Configuration
+jwt:
+  secret: xLaG2/dGZ9B1cHZGU8I+GHZlGhkBPLf88uAYbwMLYJY=
+  expiration-ms: 86400000  # 24 hours in milliseconds
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        show-sql: true
+  h2:
+    console:
+      enabled: true
+
+# JWT Configuration
+jwt:
+  secret: xLaG2/dGZ9B1cHZGU8I+GHZlGhkBPLf88uAYbwMLYJY=
+  expiration-ms: 86400000  # 24 hours in milliseconds

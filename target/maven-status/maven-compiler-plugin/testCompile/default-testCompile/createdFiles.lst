@@ -1,6 +1,8 @@
 com\flickit\FlickItBackendApplicationIT.class
-com\flickit\event\service\EventServiceTest.class
 com\flickit\rating\service\RatingServiceTest.class
 com\flickit\user\service\UserServiceTest.class
-com\flickit\claim\service\ClaimServiceTest.class
-com\flickit\claim\controller\ClaimControllerIT.class
+com\flickit\rating\controller\RatingControllerIT.class
+com\flickit\user\controller\UserControllerIT.class
+com\flickit\event\service\EventServiceTest.class
+com\flickit\event\controller\EventControllerIT.class
+com\flickit\notification\service\NotificationServiceTest.class

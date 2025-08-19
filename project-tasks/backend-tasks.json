@@ -1,0 +1,92 @@
+[
+  {
+    "id": "user_module_implementation",
+    "content": "User module: endpoints, authentication, role management",
+    "status": "completed"
+  },
+  {
+    "id": "event_module_implementation", 
+    "content": "Event module: CRUD, AI integration, location search",
+    "status": "completed"
+  },
+  {
+    "id": "claim_module_implementation",
+    "content": "Claim module: event claiming, status management",
+    "status": "completed"
+  },
+  {
+    "id": "rating_module_implementation",
+    "content": "Rating module: event rating, vendor rating updates",
+    "status": "completed"
+  },
+  {
+    "id": "notification_module_implementation",
+    "content": "Notification module: FCM integration, geofencing",
+    "status": "completed"
+  },
+  {
+    "id": "ai_module_implementation",
+    "content": "AI module: stub serwisu OpenAI",
+    "status": "completed"
+  },
+  {
+    "id": "ai_dto_creation",
+    "content": "Utworzenie DTOs dla AI (VisionLabelDto, GenerateContentRequest, GeneratedContentDto)",
+    "status": "completed"
+  },
+  {
+    "id": "ai_service_creation",
+    "content": "Implementacja AIService - stub z mock content generation",
+    "status": "completed"
+  },
+  {
+    "id": "ai_controller_creation",
+    "content": "Implementacja AIController z endpointami REST i OpenAPI",
+    "status": "completed"
+  },
+  {
+    "id": "ai_unit_tests",
+    "content": "Testy unit dla AIService (9 testów)",
+    "status": "completed"
+  },
+  {
+    "id": "ai_integration_tests",
+    "content": "Testy integration dla AIController (pominięte - problem z PasswordEncoder)",
+    "status": "pending"
+  },
+  {
+    "id": "role_authorization_tests",
+    "content": "Testy autoryzacji ról: parametryzowane sprawdzenie dostępu",
+    "status": "pending"
+  },
+  {
+    "id": "openapi_finalization",
+    "content": "OpenAPI dopieszczenie: przykłady request/response, opisy kodów odpowiedzi",
+    "status": "completed"
+  },
+  {
+    "id": "architecture_documentation",
+    "content": "Dokumentacja architektury z diagramami UML w formacie Mermaid",
+    "status": "completed"
+  },
+  {
+    "id": "docker_setup",
+    "content": "Docker Compose setup dla lokalnego development",
+    "status": "completed"
+  },
+  {
+    "id": "ci_cd_setup",
+    "content": "GitHub Actions CI/CD pipeline",
+    "status": "completed"
+  },
+  {
+    "id": "jwt_externalization",
+    "content": "Externalizacja JWT secret do application.yaml",
+    "status": "completed"
+  },
+  {
+    "id": "code_cleanup",
+    "content": "Przegląd i czyszczenie nieużywanych pól, bibliotek, duplikatów",
+    "status": "completed"
+  }
+]

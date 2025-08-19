@@ -30,8 +30,7 @@ public class TokenController {
             @RequestParam @NotBlank UUID userId,
             @RequestParam @NotBlank String role
     ) {
-        long expirationMs = 7 * 24 * 60 * 60 * 1000L;
-        String token = jwtService.generateToken(userId, role.toUpperCase(), expirationMs);
+        String token = jwtService.generateToken(userId, role.toUpperCase());
         return ResponseEntity.ok(Map.of("token", token));
     }
 }

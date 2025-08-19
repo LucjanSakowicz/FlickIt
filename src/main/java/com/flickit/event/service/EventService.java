@@ -5,6 +5,7 @@ import com.flickit.event.dto.CreateEventRequest;
 import com.flickit.event.dto.EventDto;
 import com.flickit.event.model.EventEntity;
 import com.flickit.event.repository.EventRepository;
+import com.flickit.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class EventService {
 
     private final EventRepository eventRepository;
     private final ObjectMapper objectMapper;
+    private final NotificationService notificationService;
 
     public List<EventDto> getAllEvents() {
         return eventRepository.findAll().stream()
@@ -53,7 +55,12 @@ public class EventService {
         entity = objectMapper.convertValue(tempDto, EventEntity.class);
 
         EventEntity saved = eventRepository.save(entity);
-        return convertToDto(saved);
+        EventDto result = convertToDto(saved);
+        
+        // Send notification to subscribers in radius
+        notificationService.sendEventCreatedNotification(request.getLat(), request.getLon(), request.getTitleVendor());
+        
+        return result;
     }
 
     public List<EventDto> getEventsByLocation(double lat, double lon, double radiusMeters) {

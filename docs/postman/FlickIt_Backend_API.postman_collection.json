@@ -1,0 +1,486 @@
+{
+  "info": {
+    "name": "FlickIt Backend API",
+    "description": "Complete API collection for FlickIt Backend application including authentication, user management, events, ratings, notifications, and AI services.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "event_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "🔐 Authentication",
+      "item": [
+        {
+          "name": "User Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+48123456789\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Authenticate user and receive JWT token"
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Test Token (Admin Only)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"role\": \"VENDOR\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/token",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "token"]
+            },
+            "description": "Generate test JWT token for testing purposes (ADMIN role required)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "👥 User Management",
+      "item": [
+        {
+          "name": "User Registration",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"phone\": \"+48123456789\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["users"]
+            },
+            "description": "Register new user account"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/me",
+              "host": ["{{base_url}}"],
+              "path": ["users", "me"]
+            },
+            "description": "Get current user profile information"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🎯 Event Management",
+      "item": [
+        {
+          "name": "Create Event",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titleVendor\": \"Specjalna Promocja Lunch\",\n  \"descriptionVendor\": \"Dzisiejsze menu w super cenie!\",\n  \"lat\": 52.2297,\n  \"lon\": 21.0122,\n  \"alt\": 120.0,\n  \"floor\": 1,\n  \"category\": \"FOOD\",\n  \"expiresAt\": \"2025-08-20T20:00:00Z\",\n  \"images\": [\n    \"https://example.com/image1.jpg\",\n    \"https://example.com/image2.jpg\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/events",
+              "host": ["{{base_url}}"],
+              "path": ["events"]
+            },
+            "description": "Create new event (VENDOR/ADMIN role required)"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Events by Location",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/events/latest?lat=52.2297&lon=21.0122&radius=2000",
+              "host": ["{{base_url}}"],
+              "path": ["events", "latest"],
+              "query": [
+                {
+                  "key": "lat",
+                  "value": "52.2297"
+                },
+                {
+                  "key": "lon",
+                  "value": "21.0122"
+                },
+                {
+                  "key": "radius",
+                  "value": "2000"
+                }
+              ]
+            },
+            "description": "Search for events near specified location"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🎫 Claim System",
+      "item": [
+        {
+          "name": "Claim Event",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/events/{{event_id}}/claim",
+              "host": ["{{base_url}}"],
+              "path": ["events", "{{event_id}}", "claim"]
+            },
+            "description": "Claim an event (CUSTOMER role required)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "⭐ Rating System",
+      "item": [
+        {
+          "name": "Rate Event",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eventId\": \"{{event_id}}\",\n  \"rating\": 5,\n  \"comment\": \"Świetna promocja, bardzo polecam!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/ratings",
+              "host": ["{{base_url}}"],
+              "path": ["ratings"]
+            },
+            "description": "Rate an event (CUSTOMER role required)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📱 Notification Service",
+      "item": [
+        {
+          "name": "Subscribe to Notifications",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fcmToken\": \"fcm_token_here\",\n  \"radiusMeters\": 2000.0,\n  \"latitude\": 52.2297,\n  \"longitude\": 21.0122\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/notifications/subscribe",
+              "host": ["{{base_url}}"],
+              "path": ["notifications", "subscribe"]
+            },
+            "description": "Subscribe to location-based notifications (CUSTOMER role required)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Subscriptions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/notifications/subscriptions",
+              "host": ["{{base_url}}"],
+              "path": ["notifications", "subscriptions"]
+            },
+            "description": "Get current user's notification subscriptions"
+          },
+          "response": []
+        },
+        {
+          "name": "Unsubscribe from Notifications",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fcmToken\": \"fcm_token_here\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/notifications/unsubscribe",
+              "host": ["{{base_url}}"],
+              "path": ["notifications", "unsubscribe"]
+            },
+            "description": "Unsubscribe from notifications"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🤖 AI Service",
+      "item": [
+        {
+          "name": "Generate AI Content",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imageUrl\": \"https://example.com/restaurant-interior.jpg\",\n  \"businessType\": \"restaurant\",\n  \"additionalPrompt\": \"Specjalna promocja na lunch\",\n  \"preferredLanguage\": \"pl\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/ai/generate-content",
+              "host": ["{{base_url}}"],
+              "path": ["ai", "generate-content"]
+            },
+            "description": "Generate AI content from image (VENDOR/ADMIN role required)"
+          },
+          "response": []
+        },
+        {
+          "name": "AI Service Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/ai/health",
+              "host": ["{{base_url}}"],
+              "path": ["ai", "health"]
+            },
+            "description": "Check AI service health status"
+          },
+          "response": []
+        },
+        {
+          "name": "Test AI Generation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/ai/test",
+              "host": ["{{base_url}}"],
+              "path": ["ai", "test"]
+            },
+            "description": "Test AI content generation (ADMIN role required)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🔍 Testing & Utilities",
+      "item": [
+        {
+          "name": "Swagger UI",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/swagger-ui.html",
+              "host": ["{{base_url}}"],
+              "path": ["swagger-ui.html"]
+            },
+            "description": "Access Swagger UI for API documentation"
+          },
+          "response": []
+        },
+        {
+          "name": "OpenAPI Spec",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v3/api-docs",
+              "host": ["{{base_url}}"],
+              "path": ["v3", "api-docs"]
+            },
+            "description": "Get OpenAPI specification"
+          },
+          "response": []
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/actuator/health",
+              "host": ["{{base_url}}"],
+              "path": ["actuator", "health"]
+            },
+            "description": "Check application health status"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "// Set JWT token from login response",
+          "if (pm.response.code === 200) {",
+          "    const response = pm.response.json();",
+          "    if (response.token) {",
+          "        pm.collectionVariables.set('jwt_token', response.token);",
+          "        console.log('JWT token set successfully');",
+          "    }",
+          "}",
+          "",
+          "// Set user ID from registration response",
+          "if (pm.response.code === 201) {",
+          "    const response = pm.response.json();",
+          "    if (response.id) {",
+          "        pm.collectionVariables.set('user_id', response.id);",
+          "        console.log('User ID set successfully');",
+          "    }",
+          "}",
+          "",
+          "// Set event ID from event creation response",
+          "if (pm.response.code === 201 && pm.request.url.path.includes('events')) {",
+          "    const response = pm.response.json();",
+          "    if (response.id) {",
+          "        pm.collectionVariables.set('event_id', response.id);",
+          "        console.log('Event ID set successfully');",
+          "    }",
+          "}"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

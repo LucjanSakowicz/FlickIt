@@ -1,9 +1,11 @@
+E:\FlickIt v0.0\src\test\java\com\flickit\ai\service\AIServiceTest.java
 E:\FlickIt v0.0\src\test\java\com\flickit\rating\service\RatingServiceTest.java
-E:\FlickIt v0.0\src\test\java\com\flickit\claim\service\ClaimServiceTest.java
 E:\FlickIt v0.0\src\test\java\com\flickit\event\controller\EventControllerIT.java
 E:\FlickIt v0.0\src\test\java\com\flickit\user\service\UserServiceTest.java
-E:\FlickIt v0.0\src\test\java\com\flickit\claim\controller\ClaimControllerIT.java
 E:\FlickIt v0.0\src\test\java\com\flickit\FlickItBackendApplicationIT.java
 E:\FlickIt v0.0\src\test\java\com\flickit\rating\controller\RatingControllerIT.java
+E:\FlickIt v0.0\src\test\java\com\flickit\security\RoleAuthorizationTest.java
 E:\FlickIt v0.0\src\test\java\com\flickit\event\service\EventServiceTest.java
+E:\FlickIt v0.0\src\test\java\com\flickit\ai\controller\AIControllerIT.java
 E:\FlickIt v0.0\src\test\java\com\flickit\user\controller\UserControllerIT.java
+E:\FlickIt v0.0\src\test\java\com\flickit\notification\service\NotificationServiceTest.java

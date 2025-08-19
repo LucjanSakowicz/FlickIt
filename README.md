@@ -243,4 +243,88 @@ Short‑lived, location‑based deals that create FOMO and move users to local b
 
 ---
 
+## 12. Quick Start Guide
+
+### Prerequisites
+- Java 17+
+- Maven 3.6+
+- Docker & Docker Compose
+- PostgreSQL (optional, H2 used for tests)
+
+### Local Development
+
+1. **Clone and setup**
+   ```bash
+   git clone <repository-url>
+   cd FlickIt-v0.0
+   ```
+
+2. **Run tests**
+   ```bash
+   mvn test
+   # or use Makefile
+   make test
+   ```
+
+3. **Run locally**
+   ```bash
+   mvn spring-boot:run
+   # or use Makefile
+   make run
+   ```
+
+4. **Access endpoints**
+   - API: http://localhost:8080
+   - Swagger UI: http://localhost:8080/swagger-ui.html
+   - H2 Console (test): http://localhost:8080/h2-console
+
+### Docker Setup
+
+1. **Start services**
+   ```bash
+   docker-compose up -d
+   # or use Makefile
+   make docker-run
+   ```
+
+2. **Access services**
+   - Backend: http://localhost:8080
+   - PostgreSQL: localhost:5432
+   - pgAdmin: http://localhost:5050 (admin@local / admin)
+
+3. **Stop services**
+   ```bash
+   docker-compose down
+   # or use Makefile
+   make docker-stop
+   ```
+
+### Environment Variables
+
+Copy `env.example` to `.env` and configure:
+```bash
+cp env.example .env
+# Edit .env with your values
+```
+
+### Available Commands
+
+```bash
+make help          # Show all available commands
+make build         # Build application
+make test          # Run tests
+make docker-build  # Build Docker image
+make status        # Show system status
+```
+
+### CI/CD
+
+The project includes GitHub Actions workflow (`.github/workflows/ci-cd.yml`) that:
+- Runs tests on every push/PR
+- Builds Docker image on main branch
+- Performs security scanning
+- Pushes to GitHub Container Registry
+
+---
+
 > **Note:** Vendor remains primarily responsible for product authenticity & compliance (e.g., food safety, trademark). FlickIt enforces policy checks and acts on reports (safe‑harbor).
