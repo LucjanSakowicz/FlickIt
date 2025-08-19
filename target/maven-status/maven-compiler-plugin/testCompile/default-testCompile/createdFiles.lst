@@ -1,0 +1,6 @@
+com\flickit\FlickItBackendApplicationIT.class
+com\flickit\event\service\EventServiceTest.class
+com\flickit\rating\service\RatingServiceTest.class
+com\flickit\user\service\UserServiceTest.class
+com\flickit\claim\service\ClaimServiceTest.class
+com\flickit\claim\controller\ClaimControllerIT.class

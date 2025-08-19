@@ -1,0 +1,114 @@
+[
+  {
+    "summary": "Ekran mapy z live markerami eventów",
+    "description": "Wyświetlanie eventów na mapie, pobieranie z backendu, obsługa geolokalizacji, aktualizacja markerów na żywo.",
+    "tags": ["MVP", "frontend"],
+    "subtasks": [
+      {"summary": "Integracja z Google Maps SDK", "description": "Wyświetlanie mapy, obsługa markerów, centrowanie na lokalizacji użytkownika."},
+      {"summary": "Pobieranie eventów z backendu", "description": "Wywołanie GET /events/latest?geo=… i aktualizacja markerów na mapie."},
+      {"summary": "Obsługa kliknięcia w marker", "description": "Wyświetlanie szczegółów eventu po kliknięciu w marker."}
+    ]
+  },
+  {
+    "summary": "Ekran tworzenia eventu (vendor)",
+    "description": "Formularz do dodawania eventu, upload zdjęć, wybór kategorii, integracja z AI.",
+    "tags": ["MVP", "frontend"],
+    "subtasks": [
+      {"summary": "Formularz tworzenia eventu", "description": "Pola: zdjęcia (max 3), kategoria, opis, data ważności, lokalizacja."},
+      {"summary": "Upload zdjęć i wybór aiImageUrl", "description": "Obsługa uploadu zdjęć, wybór zdjęcia do AI."},
+      {"summary": "Integracja z AI (mock)", "description": "Wywołanie endpointu AI do generowania tytułu/opisu (mock na MVP)."}
+    ]
+  },
+  {
+    "summary": "Ekran claimowania i oceny eventu",
+    "description": "Obsługa claimowania eventu, wyświetlanie szczegółów, możliwość oceny (rating, komentarz).",
+    "tags": ["MVP", "frontend"],
+    "subtasks": [
+      {"summary": "Ekran szczegółów eventu", "description": "Wyświetlanie szczegółów eventu, statusu, przycisk claimowania."},
+      {"summary": "Obsługa claimowania eventu", "description": "Wywołanie PUT /events/{id}/claim, obsługa odpowiedzi."},
+      {"summary": "Ekran oceny eventu", "description": "Formularz do wystawienia oceny (1-5), komentarza, walidacja geo-fence."}
+    ]
+  },
+  {
+    "summary": "Obsługa powiadomień push (FCM)",
+    "description": "Rejestracja tokenu, odbieranie powiadomień, nawigacja do eventu po kliknięciu.",
+    "tags": ["MVP", "frontend"],
+    "subtasks": [
+      {"summary": "Rejestracja tokenu FCM", "description": "Rejestracja i przechowywanie tokenu urządzenia."},
+      {"summary": "Obsługa powiadomień push", "description": "Odbieranie powiadomień, nawigacja do szczegółów eventu."}
+    ]
+  },
+  {
+    "summary": "Logowanie i rejestracja użytkownika (SMS/hasło)",
+    "description": "Ekran logowania, rejestracji, obsługa JWT, przechowywanie sesji.",
+    "tags": ["MVP", "frontend"],
+    "subtasks": [
+      {"summary": "Ekran logowania", "description": "Formularz logowania, walidacja numeru telefonu/hasła."},
+      {"summary": "Ekran rejestracji", "description": "Formularz rejestracji, walidacja pól, obsługa rejestracji przez backend."},
+      {"summary": "Obsługa JWT i sesji", "description": "Przechowywanie i odświeżanie tokenu JWT, automatyczne logowanie."}
+    ]
+  },
+  {
+    "summary": "Testy UI i integracyjne dla kluczowych ścieżek użytkownika",
+    "description": "Testy automatyczne dla ścieżek: rejestracja, logowanie, tworzenie eventu, claim, rating.",
+    "tags": ["MVP", "frontend"],
+    "subtasks": [
+      {"summary": "Testy rejestracji i logowania", "description": "Testy UI dla rejestracji i logowania użytkownika."},
+      {"summary": "Testy tworzenia eventu", "description": "Testy UI dla formularza eventu, uploadu zdjęć."},
+      {"summary": "Testy claimowania i ratingu", "description": "Testy UI dla claimowania i oceniania eventu."}
+    ]
+  },
+  {
+    "summary": "Obsługa geofencingu i ratingu tylko w pobliżu eventu",
+    "description": "Implementacja geofencingu na Androidzie, wymuszanie oceny tylko w określonym promieniu.",
+    "tags": ["MVP", "frontend"],
+    "subtasks": [
+      {"summary": "Konfiguracja geofencingu", "description": "Dodanie geofencingu wokół lokalizacji eventu."},
+      {"summary": "Walidacja lokalizacji przy ocenie", "description": "Sprawdzenie czy użytkownik jest w promieniu eventu przy ocenie."}
+    ]
+  },
+  {
+    "summary": "Panel admina do zarządzania kategoriami, limitami, moderacją",
+    "description": "Panel do zarządzania kategoriami, limitami uploadu, moderacją treści.",
+    "tags": ["NEXT", "frontend"],
+    "subtasks": [
+      {"summary": "Ekran panelu admina", "description": "UI do zarządzania kategoriami, limitami, moderacją."},
+      {"summary": "Integracja z backendem", "description": "Wywołania endpointów admina, obsługa odpowiedzi."}
+    ]
+  },
+  {
+    "summary": "Integracja z płatnościami online",
+    "description": "Dodanie obsługi płatności za rezerwacje/deale.",
+    "tags": ["NEXT", "frontend"],
+    "subtasks": [
+      {"summary": "UI płatności", "description": "Ekran płatności, obsługa płatności online."},
+      {"summary": "Integracja z backendem", "description": "Wywołania endpointów płatności, obsługa odpowiedzi."}
+    ]
+  },
+  {
+    "summary": "System lojalnościowy i punkty",
+    "description": "Wdrożenie systemu punktów i nagród dla aktywnych użytkowników.",
+    "tags": ["NEXT", "frontend"],
+    "subtasks": [
+      {"summary": "UI systemu lojalnościowego", "description": "Ekran punktów, nagród, historia aktywności."},
+      {"summary": "Integracja z backendem", "description": "Wywołania endpointów lojalnościowych, obsługa odpowiedzi."}
+    ]
+  },
+  {
+    "summary": "Zaawansowana analityka dla vendorów",
+    "description": "Dashboard z analityką, statystyki eventów, skuteczność promocji.",
+    "tags": ["NEXT", "frontend"],
+    "subtasks": [
+      {"summary": "UI dashboardu", "description": "Ekran analityki, wykresy, statystyki."},
+      {"summary": "Integracja z backendem", "description": "Wywołania endpointów analitycznych, obsługa odpowiedzi."}
+    ]
+  },
+  {
+    "summary": "Automatyczne wykrywanie przybycia (Smart Arrival)",
+    "description": "Wykrywanie obecności użytkownika w pobliżu eventu i automatyczne powiadomienia.",
+    "tags": ["NEXT", "frontend"],
+    "subtasks": [
+      {"summary": "Obsługa Smart Arrival", "description": "Wykrywanie obecności użytkownika, automatyczne powiadomienia push."}
+    ]
+  }
+] 
