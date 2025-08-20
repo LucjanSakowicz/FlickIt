@@ -211,6 +211,13 @@ Short‑lived, location‑based deals that create FOMO and move users to local b
 * Multi‑city sharding, microservices split
 * Vendor analytics dashboard
 * Automatic arrival detection & push confirmation + instant rating (Smart Arrival)
+* **CI/CD Pipeline Enhancements**
+  * Postman e2e test automation jobs for comprehensive API testing
+  * JMeter performance testing jobs for load and stress testing
+  * CRaC (Coordinated Restore at Checkpoint) integration for faster component scaling and reduced cold start times
+  * SonarQube integration for code quality analysis and technical debt monitoring
+  * Pitest mutation testing for comprehensive test coverage validation
+  * Elastic APM integration for application performance monitoring and distributed tracing
 
 ---
 
