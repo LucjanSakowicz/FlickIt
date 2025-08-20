@@ -1,6 +1,34 @@
 spring:
   profiles:
-    default: dev
+    default: local
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/flickit
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      #FIXME: Replace Hibernate DDL with Liquibase for proper database versioning and migration management
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+
+server:
+  port: 9030
+
+# JWT Configuration
+jwt:
+  secret: xLaG2/dGZ9B1cHZGU8I+GHZlGhkBPLf88uAYbwMLYJY=
+  expiration-ms: 86400000  # 24 hours in milliseconds
 
 ---
 
@@ -58,7 +86,8 @@ spring:
     password: your_password
   jpa:
     hibernate:
-      ddl-auto: update
+      #FIXME: Replace Hibernate DDL with Liquibase for proper database versioning and migration management
+      ddl-auto: create-drop
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect

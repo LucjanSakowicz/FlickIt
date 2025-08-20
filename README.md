@@ -218,6 +218,8 @@ Short‑lived, location‑based deals that create FOMO and move users to local b
   * SonarQube integration for code quality analysis and technical debt monitoring
   * Pitest mutation testing for comprehensive test coverage validation
   * Elastic APM integration for application performance monitoring and distributed tracing
+* **Database Management**
+  * Liquibase integration for database schema versioning and migration management
 
 ---
 
@@ -273,17 +275,21 @@ Short‑lived, location‑based deals that create FOMO and move users to local b
    make test
    ```
 
-3. **Run locally**
+3. **Run locally (PostgreSQL)**
    ```bash
-   mvn spring-boot:run
+   # Ensure PostgreSQL is running on localhost:5432
+   # Create database: flickit
+   # User: postgres, Password: postgres
+   
+   mvn spring-boot:run -Dspring-boot.run.profiles=local
    # or use Makefile
-   make run
+   make run-local
    ```
 
 4. **Access endpoints**
    - API: http://localhost:8080
    - Swagger UI: http://localhost:8080/swagger-ui.html
-   - H2 Console (test): http://localhost:8080/h2-console
+   - Actuator Health: http://localhost:8080/actuator/health
 
 ### Docker Setup
 

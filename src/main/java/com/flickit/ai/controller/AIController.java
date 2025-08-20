@@ -172,45 +172,6 @@ public class AIController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/health")
-    @Operation(
-        summary = "Check AI service health",
-        description = "Returns the current health status of the AI service. " +
-                    "This endpoint is publicly accessible and doesn't require authentication.",
-        responses = {
-            @ApiResponse(
-                responseCode = "200",
-                description = "AI service is healthy",
-                content = @Content(
-                    mediaType = "text/plain",
-                    examples = {
-                        @ExampleObject(
-                            name = "Healthy Status",
-                            value = "AI Service is healthy and ready to process requests"
-                        )
-                    }
-                )
-            ),
-            @ApiResponse(
-                responseCode = "503",
-                description = "AI service is unhealthy",
-                content = @Content(
-                    mediaType = "text/plain",
-                    examples = {
-                        @ExampleObject(
-                            name = "Unhealthy Status",
-                            value = "AI Service is experiencing issues"
-                        )
-                    }
-                )
-            )
-        }
-    )
-    public ResponseEntity<String> healthCheck() {
-        String status = aiService.healthCheck();
-        return ResponseEntity.ok(status);
-    }
-
     @PostMapping("/test")
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(
